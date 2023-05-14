@@ -2,8 +2,8 @@ import string
 import tkinter as tk  # Merupakan modul untuk membuat GUI
 import tkinter.messagebox as msg  # Merupakan modul untuk membuat pesan pada GUI
 from tkinter import ttk  # Merupakan modul untuk membuat widget tambahan pada tkinter
-import gameUtils as gutils
-import Game as game
+import src.gameUtils as gutils
+import src.Game as game
 root = tk.Tk()  # Membuat objek root sebagai GUI utama
 root.title("Word Search Game")
 

@@ -2,13 +2,21 @@ import random
 import string
 import tkinter as tk
 import yaml
-import gameUtils as gutils
+import src.gameUtils as gutils
+import src.time as t
 
 wordPressed = ''
 previous = [0, 0]
 route = [0, 0]
 
+
 def startGame(root):
+    config = gutils.readConfigFile()
+    levelNum = config['player']['level']
+
+    # Timer Frame
+    t.timer(root, config['levels'][levelNum]['time'])
+
     # Vertical Frame
     frame1 = tk.Frame(master=root, bg="red")
     frame1.pack(fill=tk.BOTH, side=tk.LEFT, expand=True, padx=20, pady=20)
@@ -16,8 +24,6 @@ def startGame(root):
     frame2 = tk.Frame(master=root)
     frame2.pack(fill=tk.BOTH, side=tk.LEFT, expand=True, padx=10, pady=12)
 
-    config = gutils.readConfigFile()
-    levelNum = config['player']['level']
     levelDetails = [
         config['levels'][levelNum]['name'],
         config['levels'][levelNum]['words']
@@ -33,15 +39,14 @@ def startGame(root):
         gutils.writeConfigFile(config)
         root.update_idletasks()
 
-    
     frame3 = tk.Frame(master=root)
     frame3.pack(fill=tk.BOTH, side=tk.RIGHT, padx=20, pady=30)
 
     abelWelcome = tk.Label(master=frame3,
-                            text="Welcome",
-                            fg='#2c334a',
-                            font=('Helvetica', 12, 'bold')).grid(row=0,
-                                                                 column=0)
+                           text="Welcome",
+                           fg='#2c334a',
+                           font=('Helvetica', 12, 'bold')).grid(row=0,
+                                                                column=0)
 
     labelWName = tk.Label(master=frame3,
                           text=config['player']['name'],
@@ -77,7 +82,7 @@ def startGame(root):
                           textvariable=currScore,
                           fg='#2c334a',
                           font=('Helvetica', 12, 'bold')).grid(row=3, column=1)
-    
+
     wordList = []
 
     with open(r'data/words.yaml') as file:
@@ -112,8 +117,8 @@ def startGame(root):
         y = random.randrange(0, size - 1)
 
         if (x + len(word) * direction[0] > size - 1
-                or x + len(word) * direction[0] < 0
-                or y + len(word) * direction[1] > size - 1
+            or x + len(word) * direction[0] < 0
+            or y + len(word) * direction[1] > size - 1
             ) or y + len(word) * direction[1] < 0:
             wordPlace(j, dictionary)
             return
