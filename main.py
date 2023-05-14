@@ -12,7 +12,7 @@ root.title("Word Search Game")
 
 def init():
     header = tk.Frame(root)
-    header.pack(fill=tk.X, side=tk.TOP)
+    header.pack(fill=tk.BOTH, side=tk.TOP)
 
     # FOnt bold
     heading = tk.Label(header, text="Search Me If You Can", font=(

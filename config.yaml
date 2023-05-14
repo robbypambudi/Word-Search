@@ -30,8 +30,8 @@ levels:
     words: 23
 max_time: 5
 player:
-  level: 3
-  name: Hallo
+  level: 1
+  name: jb
   score: 0
-word_count: 17
+word_count: 8
 words_count: 8
