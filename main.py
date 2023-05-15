@@ -16,7 +16,6 @@ def init():
     header = tk.Frame(root, bg="white", width=400, height=100)
     header.pack(fill=tk.BOTH, side=tk.TOP)
 
-    # Mengubah warna latar belakang menjadi putih
     root.config(background='white')
 
     heading = tk.Label(header, text="Search Me If You Can", font=(

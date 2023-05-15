@@ -3,7 +3,9 @@ import string
 import tkinter as tk
 import yaml
 import src.gameUtils as gutils
-import src.time as t
+import tkinter.messagebox as msg
+import src.time_1 as t
+import src.help as h
 
 wordPressed = ''
 previous = [0, 0]
@@ -15,7 +17,9 @@ def startGame(root):
     levelNum = config['player']['level']
 
     # Timer Frame
-    t.timer(root, config['levels'][levelNum]['time'])
+    frame = tk.Frame(root, bg="white", width=400, height=100)
+    frame.pack(fill=tk.BOTH, side=tk.TOP)
+    t.timer(frame, config['levels'][levelNum]['time'])
 
     # Vertical Frame
     frame1 = tk.Frame(master=root, bg="red")
@@ -42,46 +46,7 @@ def startGame(root):
     frame3 = tk.Frame(master=root)
     frame3.pack(fill=tk.BOTH, side=tk.RIGHT, padx=20, pady=30)
 
-    abelWelcome = tk.Label(master=frame3,
-                           text="Welcome",
-                           fg='#2c334a',
-                           font=('Helvetica', 12, 'bold')).grid(row=0,
-                                                                column=0)
-
-    labelWName = tk.Label(master=frame3,
-                          text=config['player']['name'],
-                          fg='#2c334a',
-                          font=('Helvetica', 12, 'bold')).grid(row=0, column=1)
-
-    labelLevelLbl = tk.Label(master=frame3,
-                             text="Level",
-                             fg='#2c334a',
-                             font=('Helvetica', 12)).grid(row=1, column=0)
-
-    labelLevel = tk.Label(master=frame3,
-                          text=levelDetails[0],
-                          fg='#2c334a',
-                          font=('Helvetica', 12, 'bold')).grid(row=1, column=1)
-
-    labelLevelLbl = tk.Label(master=frame3,
-                             text="Words",
-                             fg='#2c334a',
-                             font=('Helvetica', 12)).grid(row=2, column=0)
-
-    labelLevel = tk.Label(master=frame3,
-                          text=levelDetails[1],
-                          fg='#2c334a',
-                          font=('Helvetica', 12, 'bold')).grid(row=2, column=1)
-
-    labelLevelLbl = tk.Label(master=frame3,
-                             text="Score",
-                             fg='#2c334a',
-                             font=('Helvetica', 12)).grid(row=3, column=0)
-
-    labelLevel = tk.Label(master=frame3,
-                          textvariable=currScore,
-                          fg='#2c334a',
-                          font=('Helvetica', 12, 'bold')).grid(row=3, column=1)
+    gutils.labelGame(frame3, config, levelDetails, currScore)
 
     wordList = []
 
@@ -99,6 +64,48 @@ def startGame(root):
     directionArr = [[1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1],
                     [0, -1], [1, -1]]
 
+    def handleButtonHelp():
+        h.help(root, arr, dictionary)
+
+    def nextLevel():
+        config = gutils.readConfigFile()
+        config['player']['level'] = config['player']['level'] + 1
+        gutils.writeConfigFile(config)
+        frame.destroy()
+        frame1.destroy()
+        frame2.destroy()
+        frame3.destroy()
+        if (config['player']['level'] == 4):
+            msg.showinfo("Selamat!", "Anda telah menyelesaikan semua level!")
+            endFrame = tk.Frame(root, bg="white", width=400, height=100)
+            endFrame.pack(fill=tk.BOTH, side=tk.TOP)
+            tk.Label(endFrame, text="Score Anda: " +
+                     str(config['player']['score']), font=("Open Sans", 12, "bold")).pack(pady=10)
+
+            button_keluar = tk.Button(endFrame, text="Keluar", font=(
+                "Open Sans", 12), fg='black', bg='red', borderwidth=0, highlightthickness=0, command=root.destroy)
+            button_keluar.pack(pady=(0, 20), ipadx=20,
+                               ipady=10, anchor=tk.CENTER)
+
+            endFrame.update_idletasks()
+
+            width = endFrame.winfo_width()
+            height = endFrame.winfo_height()
+
+            x = (endFrame.winfo_screenwidth() // 2) - (width // 2)
+            y = (endFrame.winfo_screenheight() // 2) - (height // 2)
+
+            endFrame.geometry('{}x{}+{}+{}'.format(width, height, x, y))
+
+        else:
+            startGame(root)
+
+    tk.Button(frame, text="Bantuan", font=("Open Sans", 12), fg='black', bg='yellow',
+              borderwidth=0, highlightthickness=0, command=handleButtonHelp).pack(side=tk.RIGHT, padx=10)
+
+    tk.Button(frame, text="Next Level", font=("Open Sans", 12), fg='black', bg='green',
+              borderwidth=0, highlightthickness=0, command=nextLevel).pack(side=tk.LEFT, padx=10)
+
     class Square:
         status = False
         filled = False
@@ -112,14 +119,14 @@ def startGame(root):
     def wordPlace(j, dictionary):
         word = random.choice(wordList)
         direction = directionArr[random.randrange(0, 7)]
-        
+
         x = random.randrange(0, size - 1)
         y = random.randrange(0, size - 1)
 
         if (x + len(word) * direction[0] > size - 1
-            or x + len(word) * direction[0] < 0
-            or y + len(word) * direction[1] > size - 1
-            ) or y + len(word) * direction[1] < 0:
+                or x + len(word) * direction[0] < 0
+                or y + len(word) * direction[1] > size - 1
+                ) or y + len(word) * direction[1] < 0:
             wordPlace(j, dictionary)
             return
 
