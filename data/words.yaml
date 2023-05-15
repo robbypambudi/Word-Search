@@ -1,31 +1,106 @@
 words:
-  - ABRASI
-  - BEBEK
-  - BIOLOGI
-  - BINATANG
-  - CANGKANG
-  - DIAM
-  - DENSITOMETRI
-  - MATRAS
-  - ELITE
-  - FABEL
-  - FASE
-  - FOSIL
-  - FOTO
-  - KAMI
-  - GAIB
-  - HIU
-  - HIFA
-  - HOBI
-  - IMAGINASI
-  - INKUBASI
-  - GALAKSI
-  - INOVASI
-  - JANGKAR
-  - JAYA
-  - LENSA
-  - MATERI
-  - MELODRAMA
-  - MANDI
-  - BAIK
-  - TERANG
+  1:
+    WORD: Ungu
+    HINT: Warna janda
+  2:
+    WORD: KOMPUTER
+    HINT: Hal paling penting bagi masyarakat informatika
+  3:
+    WORD: AIR
+    HINT: Cairan bening dan tidak berwarna
+  4:
+    WORD: API
+    HINT: Energi panas dan cahaya yang dihasilkan oleh bahan yang terbakar
+  5:
+    WORD: PULPEN
+    HINT: Alat tulis yang menggunakan tinta cair dan dilengkapi dengan mekanisme untuk mengeluarkan tinta tersebut.
+  6:
+    WORD: Gajah
+    HINT: Badannya besar, hidungnya panjang
+  7:
+    WORD: KODE
+    HINT: Tanda rahasia
+  8:
+    WORD: MEJA
+    HINT: Furnitur untuk menopang barang.
+  9:
+    WORD: GELAP
+    HINT: Ketiadaan cahaya
+  10:
+    WORD: LISTRIK
+    HINT: Lampu gak nyala kalau gak ada ini.
+  11:
+    WORD: SENDOK
+    HINT: Temannya garpu
+  12:
+    WORD: MONYET
+    HINT: Mamalia primata yang sering dijumpai di hutan
+  13:
+    WORD: HARIMAU
+    HINT: Kucing besar
+  14:
+    WORD: PELANGI
+    HINT: Warna-warni yang muncul setelah hujan
+  15:
+    WORD: AWAN
+    HINT: Segumpal kapas di langit
+
+  16:
+    WORD: BUNGA
+    HINT: Warna-warni, indah, wangi.
+
+  17:
+    WORD: MASKER
+    HINT: Sering dipakai untuk menghindari debu, kotoran, dan virus masuk lewat saluran pernapasan.
+
+  18:
+    WORD: KURSI
+    HINT: Temannya meja.
+
+  19:
+    WORD: SAYUR
+    HINT: Bahan makanan sehat tapi banayk yang gak suka.
+
+  20:
+    WORD: HADIAH
+    HINT: Diberikan untuk orang spesial.
+
+  21:
+    WORD: CELANA
+    HINT: Benda yang menutupi bagian bawah tubuh.
+
+  22:
+    WORD: BURUNG
+    HINT: Bisa terbang dan suara merdu.
+
+  23:
+    WORD: KUMIS
+    HINT: Rambut di atas mulut.
+
+  24:
+    WORD: KERETA
+    HINT: Alat transportarsi yang panjang.
+
+  25:
+    WORD: KELAPA
+    HINT: Buah bulat dan berisi air.
+
+  26:
+    WORD: BUKU
+    HINT: Jendela ilmu pengetahuan.
+
+  27:
+    WORD: BELAJAR
+    HINT: Harus dilakukan kalau mau pintar.
+
+  28:
+    WORD: KERTAS
+    HINT: Tipis dipakai untuk nulis.
+
+  29:
+    WORD: BALON
+    HINT: Diisi angin dapat menggelembung.
+
+  30:
+    WORD: SEPATU
+    HINT: Alas untuk melindungi kaki.
