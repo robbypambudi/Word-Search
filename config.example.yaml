@@ -1,0 +1,40 @@
+high_scores:
+  1:
+    level: Mini
+    name: null
+    score: 0
+  2:
+    level: Normal
+    name: null
+    score: 0
+  3:
+    level: Pro
+    name: null
+    score: 0
+  4:
+    level: Pro Max
+    name: null
+    score: 0
+levels:
+  1:
+    name: Easy
+    time: 900
+    words: 8
+  2:
+    name: Medium
+    time: 600
+    words: 12
+  3:
+    name: Hard
+    time: 300
+    words: 15
+  4:
+    name: Pro Max
+    words: 23
+max_time: 5
+player:
+  level: 4
+  name: fecdv c
+  score: 0
+word_count: 8
+words_count: 8
