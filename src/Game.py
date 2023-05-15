@@ -115,6 +115,7 @@ def startGame(root):
         for i in range(len(word)):
             arr[x + direction[0] * i][y + direction[1] * i].char = word[i]
             arr[x + direction[0] * i][y + direction[1] * i].filled = True
+        wordList.remove(word)
 
     def wordPlace(j, dictionary):
         word = random.choice(wordList)
@@ -126,7 +127,7 @@ def startGame(root):
         if (x + len(word) * direction[0] > size - 1
                 or x + len(word) * direction[0] < 0
                 or y + len(word) * direction[1] > size - 1
-                ) or y + len(word) * direction[1] < 0:
+            ) or y + len(word) * direction[1] < 0:
             wordPlace(j, dictionary)
             return
 
