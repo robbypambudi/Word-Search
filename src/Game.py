@@ -112,7 +112,7 @@ def startGame(root):
     def wordPlace(j, dictionary):
         word = random.choice(wordList)
         direction = directionArr[random.randrange(0, 7)]
-
+        
         x = random.randrange(0, size - 1)
         y = random.randrange(0, size - 1)
 
@@ -169,7 +169,7 @@ def startGame(root):
     def checkWord():
         global wordPressed
 
-        if wordPressed in dictionary:
+        if wordPressed in dictionary and wordPressed != '':
             check[int(dictionary.index(wordPressed))].configure(
                 font=('Helvetica', 1), fg='#f0f0f0', bg='#f0f0f0')
             check[int(dictionary.index(wordPressed))].grid()
@@ -219,6 +219,7 @@ def startGame(root):
             if (arr[x][y].filled == False):
                 arr[x][y].char = random.choice(string.ascii_uppercase)
 
+            # Button in Grid
             button[x][y] = tk.Button(
                 frame1,
                 text=arr[x][y].char,
