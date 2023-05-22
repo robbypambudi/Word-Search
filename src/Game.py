@@ -206,12 +206,12 @@ def startGame(root):
         if (len(wordPressed) == 0):
             previous = newPressed
             wordPressed = arr[x][y].char
-            button[x][y].configure(bg='yellow', fg='#255059')
+            button[x][y].configure(bg='#2c334a', fg='white')
 
         elif (len(wordPressed) == 1 and (x - previous[0])**2 <= 1
               and (y - previous[1])**2 <= 1 and newPressed != previous):
             wordPressed += arr[x][y].char
-            button[x][y].configure(bg='yellow', fg='#255059')
+            button[x][y].configure(bg='#2c334a', fg='white')
 
             route = [x - previous[0], y - previous[1]]
             previous = [x, y]
@@ -219,7 +219,7 @@ def startGame(root):
         elif (len(wordPressed) > 1 and x - previous[0] == route[0]
               and y - previous[1] == route[1]):
             wordPressed += arr[x][y].char
-            button[x][y].configure(bg='yellow', fg='#255059')
+            button[x][y].configure(bg='#2c334a', fg='white')
             previous = [x, y]
 
     for x in range(size):

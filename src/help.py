@@ -84,4 +84,4 @@ def help(root: tk.Tk, arr, button, wordList, wordData):
     for i in range(len(res['location'])):
         x, y = res['location'][i]
         arr[x][y].filled = True
-        button[x][y].config(bg='#2c334a', fg='#ffffff')
+        button[x][y].config(bg='yellow', fg='black')
