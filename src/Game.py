@@ -45,7 +45,7 @@ def startGame(root):
     frame3.pack(fill=tk.BOTH, side=tk.RIGHT, padx=20, pady=30)
 
     frame4 = tk.Frame(master=root, bg='#cbe5f7', width=400)
-    frame4.pack(fill=tk.BOTH, side=tk.TOP, pady=10)
+    frame4.pack(fill=tk.BOTH, side=tk.TOP, pady=10, anchor='ne', expand=True)
 
     gutils.labelGame(frame3, config, levelDetails, currScore)
 
@@ -131,7 +131,7 @@ def startGame(root):
         if (x + len(oneWord) * direction[0] > size - 1
                 or x + len(oneWord) * direction[0] < 0
                 or y + len(oneWord) * direction[1] > size - 1
-                ) or y + len(oneWord) * direction[1] < 0:
+            ) or y + len(oneWord) * direction[1] < 0:
             wordPlace(j, dictionary)
             return
 
@@ -241,9 +241,10 @@ def startGame(root):
                 text=arr[x][y].char,
                 bg='#255059',
                 fg='white',
-                width=2,
-                height=1,
+                width=4,
+                height=2,
                 relief=tk.FLAT,
+                font=('Helvetica', 9),
                 command=lambda x=x, y=y: buttonPress(x, y))
             button[x][y].grid(row=x, column=y)
 

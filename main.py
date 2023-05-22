@@ -26,7 +26,7 @@ def init():
 
 def main():
     init()
-    frame = tk.Frame(root, bg="white", width=800, height=600)
+    frame = tk.Frame(root, bg="white", width=800, height=400)
     frame.pack(pady=56, padx=56)
 
     tk.Label(frame, text="Name", font=("Open Sans", 12, "bold"), borderwidth=0,
