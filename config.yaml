@@ -33,8 +33,8 @@ levels:
     words: 18
 max_time: 5
 player:
-  level: 4
-  name: wc
+  level: 3
+  name: ajfnjs
   score: 0
 word_count: 12
 words_count: 8

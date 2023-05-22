@@ -89,8 +89,9 @@ def help(root: tk.Tk, arr, button, wordList, updateScore):
         word = random.choice(wordList)
 
     res = dfs(arr, word["WORD"], 0, 0)
+    #output bantuan saat belum ada nilai
     if (not checkScore()):
-        # Kerjaan Dian
+        msg.showinfo("Maaf!", "LOL")
         return    
     updateScore(-8)
     for i in range(len(res['location'])):
