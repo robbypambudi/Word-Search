@@ -109,7 +109,7 @@ def startGame(root):
     tk.Button(frame, text="Bantuan", font=("Open Sans", 12), fg='black', bg='yellow',
               borderwidth=0, highlightthickness=0, command=handleButtonHelp).pack(side=tk.RIGHT, padx=10)
 
-    tk.Button(frame, text="Next Level", font=("Open Sans", 12), fg='black', bg='green',
+    tk.Button(frame, text="Next Level", font=("Open Sans", 12), fg='black', bg='#4169E1',
               borderwidth=0, highlightthickness=0, command=nextLevel).pack(side=tk.LEFT, padx=10)
 
     class Square:
