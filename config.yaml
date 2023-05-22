@@ -23,18 +23,18 @@ levels:
   2:
     name: Medium
     time: 600
-    words: 16
+    words: 14
   3:
     name: Hard
     time: 300
-    words: 24
+    words: 16
   4:
-    name: Pro Max
-    words: 23
+    name: Maksimal
+    words: 18
 max_time: 5
 player:
-  level: 1
-  name: hbn
+  level: 3
+  name: asbdhasd
   score: 0
 word_count: 12
 words_count: 8

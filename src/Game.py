@@ -36,8 +36,8 @@ def startGame(root):
     def updateScore():
         config = gutils.readConfigFile()
         score = config['player']['score']
-        config['player']['score'] = score + 1
-        currScore.set(score + 1)
+        config['player']['score'] = score + 10
+        currScore.set(score +10)
         gutils.writeConfigFile(config)
         root.update_idletasks()
 
@@ -55,9 +55,11 @@ def startGame(root):
         wordFile = yaml.load(file, Loader=yaml.FullLoader)
         wordData = wordFile['words']
         wordList = [word for word in wordFile['words']]
-
-    numWords = config['words_count']
-    size = config['word_count']
+        
+    curLevel = config['player']['level']
+    numWords= size = config['levels'][curLevel]['words']
+        
+        
 
     arr = [[0 for x in range(size)] for y in range(size)]
     button = [[0 for x in range(size)] for y in range(size)]
@@ -98,10 +100,11 @@ def startGame(root):
             x = (endFrame.winfo_screenwidth() // 2) - (width // 2)
             y = (endFrame.winfo_screenheight() // 2) - (height // 2)
 
-            endFrame.geometry('{}x{}+{}+{}'.format(width, height, x, y))
+            
 
         else:
             startGame(root)
+            root.update_idletasks()
 
     tk.Button(frame, text="Bantuan", font=("Open Sans", 12), fg='black', bg='yellow',
               borderwidth=0, highlightthickness=0, command=handleButtonHelp).pack(side=tk.RIGHT, padx=10)
