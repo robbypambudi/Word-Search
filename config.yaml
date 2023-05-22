@@ -19,22 +19,22 @@ levels:
   1:
     name: Easy
     time: 900
-    words: 8
+    words: 12
   2:
     name: Medium
     time: 600
-    words: 12
+    words: 16
   3:
     name: Hard
     time: 300
-    words: 15
+    words: 24
   4:
     name: Pro Max
     words: 23
 max_time: 5
 player:
-  level: 1
-  name: fcgvb
-  score: 1
-word_count: 8
+  level: 3
+  name: ahsjd
+  score: 0
+word_count: 12
 words_count: 8

@@ -15,8 +15,6 @@ def writeConfigFile(data):
 
 
 def gameLavel(level: str, name: str):
-    print(level + " " + name)
-
     config = readConfigFile()
 
     currLevel = 0

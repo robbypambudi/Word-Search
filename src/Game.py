@@ -23,10 +23,8 @@ def startGame(root):
 
     # Vertical Frame
     frame1 = tk.Frame(master=root, bg="red")
-    frame1.pack(fill=tk.BOTH, side=tk.LEFT, expand=True, padx=20, pady=20)
-
-    frame2 = tk.Frame(master=root)
-    frame2.pack(fill=tk.BOTH, side=tk.LEFT, expand=True, padx=10, pady=12)
+    frame1.pack(side=tk.LEFT, expand=True, padx=20, pady=20)
+    frame1.grid_columnconfigure(0, weight=1)
 
     levelDetails = [
         config['levels'][levelNum]['name'],
@@ -46,15 +44,20 @@ def startGame(root):
     frame3 = tk.Frame(master=root)
     frame3.pack(fill=tk.BOTH, side=tk.RIGHT, padx=20, pady=30)
 
+    frame4 = tk.Frame(master=root, bg='#cbe5f7', width=400)
+    frame4.pack(fill=tk.BOTH, side=tk.TOP, pady=10)
+
     gutils.labelGame(frame3, config, levelDetails, currScore)
 
     wordList = []
 
     with open(r'data/words.yaml') as file:
         wordFile = yaml.load(file, Loader=yaml.FullLoader)
+        wordData = wordFile['words']
         wordList = [word for word in wordFile['words']]
 
-    size = numWords = config['words_count']
+    numWords = config['words_count']
+    size = config['word_count']
 
     arr = [[0 for x in range(size)] for y in range(size)]
     button = [[0 for x in range(size)] for y in range(size)]
@@ -65,7 +68,7 @@ def startGame(root):
                     [0, -1], [1, -1]]
 
     def handleButtonHelp():
-        h.help(root, arr, dictionary)
+        h.help(root, arr, button, dictionary, wordData)
 
     def nextLevel():
         config = gutils.readConfigFile()
@@ -73,7 +76,7 @@ def startGame(root):
         gutils.writeConfigFile(config)
         frame.destroy()
         frame1.destroy()
-        frame2.destroy()
+        frame4.destroy()
         frame3.destroy()
         if (config['player']['level'] == 4):
             msg.showinfo("Selamat!", "Anda telah menyelesaikan semua level!")
@@ -112,43 +115,48 @@ def startGame(root):
         char = ''
 
     def fill(x, y, word, direction):
-        for i in range(len(word)):
-            arr[x + direction[0] * i][y + direction[1] * i].char = word[i]
+        w = wordData[word]['WORD']
+        for i in range(len(w)):
+            arr[x + direction[0] * i][y + direction[1] * i].char = w[i]
             arr[x + direction[0] * i][y + direction[1] * i].filled = True
         wordList.remove(word)
 
     def wordPlace(j, dictionary):
         word = random.choice(wordList)
         direction = directionArr[random.randrange(0, 7)]
-
+        oneWord = wordData[word]['WORD']
         x = random.randrange(0, size - 1)
         y = random.randrange(0, size - 1)
 
-        if (x + len(word) * direction[0] > size - 1
-                or x + len(word) * direction[0] < 0
-                or y + len(word) * direction[1] > size - 1
-            ) or y + len(word) * direction[1] < 0:
+        if (x + len(oneWord) * direction[0] > size - 1
+                or x + len(oneWord) * direction[0] < 0
+                or y + len(oneWord) * direction[1] > size - 1
+                ) or y + len(oneWord) * direction[1] < 0:
             wordPlace(j, dictionary)
             return
 
-        for i in range(len(word)):
+        for i in range(len(oneWord)):
             if (arr[x + direction[0] * i][y +
                                           direction[1] * i].filled == True):
                 if (arr[x + direction[0] * i][y + direction[1] * i].char !=
-                        word[i]):
+                        oneWord[i]):
                     wordPlace(j, dictionary)
                     return
-        dictionary[j] = word
+        dictionary[j] = {
+            'WORD': oneWord,
+            'HINT': wordData[word]['HINT'],
+            'IS_HELPED': False,
+        }
 
-        check[j] = tk.Label(frame2,
-                            text=word,
+        check[j] = tk.Label(frame4,
+                            text=wordData[word]['HINT'],
                             height=1,
-                            width=15,
+                            width=50,
                             font=('None %d ' % (10)),
                             fg='#254359',
                             bg='#cbe5f7',
                             anchor='c')
-        check[j].grid()
+        check[j].grid(row=j+1, column=0, padx=3, pady=2)
 
         fill(x, y, word, direction)
         return dictionary
@@ -176,12 +184,13 @@ def startGame(root):
 
     def checkWord():
         global wordPressed
+        dict = [dictionary[i]['WORD']
+                for i in range(len(dictionary)) if dictionary[i] != '']
 
-        if wordPressed in dictionary and wordPressed != '':
-            check[int(dictionary.index(wordPressed))].configure(
-                font=('Helvetica', 1), fg='#f0f0f0', bg='#f0f0f0')
-            check[int(dictionary.index(wordPressed))].grid()
-            dictionary[dictionary.index(wordPressed)] = ''
+        if wordPressed in dict and wordPressed != '':
+            check[int(dict.index(wordPressed))].configure(
+                font=('Helvetica', 10),  fg='green',
+                bg='#cbe5f7',)
 
             updateScore()
             colourWord(wordPressed, True)
@@ -196,7 +205,6 @@ def startGame(root):
 
         if (len(wordPressed) == 0):
             previous = newPressed
-            # print(previous)
             wordPressed = arr[x][y].char
             button[x][y].configure(bg='yellow', fg='#255059')
 
@@ -239,7 +247,7 @@ def startGame(root):
                 command=lambda x=x, y=y: buttonPress(x, y))
             button[x][y].grid(row=x, column=y)
 
-    checkWordBtn = tk.Button(frame2,
+    checkWordBtn = tk.Button(frame4,
                              text="Check Word",
                              height=1,
                              width=15,
@@ -248,4 +256,4 @@ def startGame(root):
                              font=('Helvetica', 10),
                              fg='white',
                              command=checkWord)
-    checkWordBtn.grid()
+    checkWordBtn.grid(row=0, column=0)
