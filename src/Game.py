@@ -33,11 +33,11 @@ def startGame(root):
     currScore = tk.StringVar()
     currScore.set(0)
 
-    def updateScore():
+    def updateScore(value):
         config = gutils.readConfigFile()
         score = config['player']['score']
-        config['player']['score'] = score + 10
-        currScore.set(score +10)
+        config['player']['score'] = score + value
+        currScore.set(score +value)
         gutils.writeConfigFile(config)
         root.update_idletasks()
 
@@ -70,7 +70,7 @@ def startGame(root):
                     [0, -1], [1, -1]]
 
     def handleButtonHelp():
-        h.help(root, arr, button, dictionary, wordData)
+        h.help(root, arr, button, dictionary, updateScore)
 
     def nextLevel():
         config = gutils.readConfigFile()
@@ -195,7 +195,7 @@ def startGame(root):
                 font=('Helvetica', 10),  fg='green',
                 bg='#cbe5f7',)
 
-            updateScore()
+            updateScore(10)
             colourWord(wordPressed, True)
         else:
             colourWord(wordPressed, False)

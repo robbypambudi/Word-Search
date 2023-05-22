@@ -2,6 +2,7 @@ import tkinter as tk
 import tkinter.messagebox as msg
 import random
 
+import src.gameUtils as gutils
 
 def isSafe(arr, x, y, visited):
     return (x >= 0 and x < len(arr) and y >= 0 and y < len(arr) and not visited[x][y])
@@ -61,8 +62,16 @@ def dfs(arr, word, i, j):
 
     return {'status': False, 'location': []}
 
+def checkScore():
+    config = gutils.readConfigFile()
+    score = config['player']['score']
+    if (score <= 0):
+        return False
+    return True
+    
 
-def help(root: tk.Tk, arr, button, wordList, wordData):
+
+def help(root: tk.Tk, arr, button, wordList, updateScore):
     global location
 
     i = 0
@@ -80,7 +89,10 @@ def help(root: tk.Tk, arr, button, wordList, wordData):
         word = random.choice(wordList)
 
     res = dfs(arr, word["WORD"], 0, 0)
-
+    if (not checkScore()):
+        # Kerjaan Dian
+        return    
+    updateScore(-8)
     for i in range(len(res['location'])):
         x, y = res['location'][i]
         arr[x][y].filled = True
