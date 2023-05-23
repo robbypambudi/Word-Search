@@ -1,4 +1,5 @@
-high_scores:
+high_scores:  # Daftar high scores dengan level dan skor awal
+# Setiap entri memiliki nomor urut, level, nama pemain, dan skor
   1:
     level: Mini
     name: null
@@ -15,7 +16,10 @@ high_scores:
     level: Pro Max
     name: null
     score: 0
-levels:
+# Saat ini, nama pemain masih kosong dan skor diatur menjadi 0
+
+levels: 
+# tiap entri punya level berbeda, waktu, dan jumlah kata yang harus ditemukan
   1:
     name: Easy
     time: 900
@@ -31,10 +35,13 @@ levels:
   4:
     name: Maksimal
     words: 18
-max_time: 5
+# Tingkat kesulitan meningkat seiring dengan penurunan waktu dan peningkatan jumlah kata.
+max_time: 5 # maksimal waktu yang diberikan untuk menyelesaikan tiap level
+
 player:
-  level: 3
-  name: ajfnjs
+# Informasi tentang pemain saat ini
+  level: 1
+  name: efsfa
   score: 0
-word_count: 12
-words_count: 8
+word_count: 12 # Jumlah kata yang harus ditemukan dalam setiap level
+words_count: 8 # Jumlah total kata yang tersedia dalam permainan

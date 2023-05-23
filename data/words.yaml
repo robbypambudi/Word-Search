@@ -1,4 +1,5 @@
 words:
+# kata dan deskripsi masing-masing kata 
   1:
     WORD: UNGU
     HINT: Warna janda
@@ -181,7 +182,7 @@ words:
 
 46:
   WORD: TALI
-  HINT: Seutas bahan panjang dari serat atau bahan lain yang digunakan untuk mengikat. .sesuatu.
+  HINT: Seutas bahan panjang dari serat atau bahan lain yang digunakan untuk mengikat sesuatu.
 
 47:
   WORD: ULAR
